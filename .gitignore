@@ -1,0 +1,6 @@
+~
+*.tmp
+*.project
+.settings/
+.idea
+~$*
