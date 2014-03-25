@@ -1,9 +1,11 @@
 .mail {
     height: 40em;
+    padding-right: 1em;
     background-color: #CC3333;
 }
 
 .list {
     height: 40em;
+    padding-left: 1em;
     background-color: #2A52A6;
 }
