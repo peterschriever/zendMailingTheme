@@ -1,1 +1,36 @@
-<?php echo $this->layout()->content; ?>
+<?php
+	$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf8');
+	$this->headTitle()->setSeparator(' * ');
+	$this->headTitle('Zend Mailing Theme');
+	echo $this->doctype();
+?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl" lang="nl">
+	<head>
+		<?php echo $this->headMeta(); ?>
+		<?php echo $this->headTitle(); ?>
+        
+		<?php echo $this->headLink()
+                        ->headLink()->prependStylesheet($this->baseUrl().'/css/default.css')
+                        ->headLink()->prependStylesheet($this->baseUrl().'/css/normalize.css')
+                        ->headLink()->prependStylesheet($this->baseUrl().'/css/foundation.css'); ?>
+
+		<base href="localhost<?php echo $this->baseUrl(); ?>/">
+	</head>
+	<body>
+		<div class="page">
+            <header class="row collapse">
+                <div class="large-12 columns">
+                    <h1>Zend Mailing Theme</h1>
+                </div>
+            </header>
+			<div class="row">
+				<div class="small-12 medium-12 large-12 columns main">
+					<div class="content">
+						<?php echo $this->layout()->content; ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
