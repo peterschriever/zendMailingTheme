@@ -39,34 +39,21 @@ class IndexController extends Zend_Controller_Action
 
     public function newmailAction()
     {
-        /*
-         * MyCMS voorbeeld(van het zend boekje)
-         *
-        $form = new Application_Form_Content();
-        $form->submit->setLabel('Toevoegen');
-        $this->view->form = $form;
-        if($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->getPost();
-            if($form->isValid($formData)) {
-                $title = $form->getValue('title');
-                $content = $form->getValue('content');
-                $created = $form->getValue('created');
-                $updated = $form->getValue('updated');
-
-                $contentmodel = new Application_Model_dbTable_Content();
-                $contentmodel->addContent($title, $content, $created, $updated);
-                $this->_helper->redirector('index');
-            } else {
-                $form->populate($formData);
-            }
-        }*/
         $form = new Application_Form_Mail();
         $this->view->form = $form;
         if($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
             if($form->isValid($formData)) {
                 // TODO: functie schrijven om mails uiteindelijk te versturen
-                // mailing form is valid => send mail function parameters are in $form->getValue('paramname')
+                Zend_Debug::dump($formData);
+                $mail = new Zend_Mail();
+                $mail->setBodyText('My Nice Test Text');
+                $mail->setBodyHtml('My Nice <b>Test</b> Text');
+                $mail->setFrom('peterzen72@gmail.com', 'Some Sender');
+                $mail->addTo('peterzen72@gmail.com', 'Some Recipient');
+                $mail->setSubject('TestSubject');
+                $mail->send();
+                $form->populate($formData);
             } else {
                 $form->populate($formData);
             }
