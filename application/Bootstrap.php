@@ -10,5 +10,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         ini_set("display_errors", "On");
     }
 
+
+
 }
 
