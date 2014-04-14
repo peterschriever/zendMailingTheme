@@ -7,14 +7,28 @@
     <!-- Left area for the mail form -->
     <div class="medium-6 large-6 columns">
         <div class="mail">
-        
+            <div class="mail-content">
+                <?php
+                    $this->title = 'Nieuw mail bericht opstellen';
+                    $this->headTitle($this->title);
+                    echo '<h3>'.$this->title.'</h3>';
+                    echo $this->mail_form;
+                ?>
+            </div>
         </div>
     </div>
     
     <!-- Right area for the list -->
     <div class="medium-6 large-6 columns">
         <div class="list">
-        
+            <div class="list-content">
+                <?php
+                    $this->title = 'Nieuwe subscriber toevoegen aan de e-maillijst';
+                    $this->headTitle($this->title);
+                    echo '<h3>'.$this->title.'</h3>';
+                    echo $this->list_form;
+                ?>
+            <div>
         </div>
     </div>
 </div>
