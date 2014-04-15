@@ -9,11 +9,20 @@
 	<head>
 		<?php echo $this->headMeta(); ?>
 		<?php echo $this->headTitle(); ?>
-        
+
 		<?php echo $this->headLink()
                         ->headLink()->prependStylesheet($this->baseUrl().'/css/default.css')
                         ->headLink()->prependStylesheet($this->baseUrl().'/css/normalize.css')
-                        ->headLink()->prependStylesheet($this->baseUrl().'/css/foundation.css'); ?>
+                        ->headLink()->prependStylesheet($this->baseUrl().'/css/foundation.css');
+        $this->headScript()->appendFile($this->baseUrl().'/js/vendor/jquery-1.10.1.js');
+        $this->headScript()->appendFile($this->baseUrl().'/js/tinymce/tinymce.min.js');
+        echo $this->headScript();
+        ?>
+        <script type="text/javascript">
+            tinymce.init({
+                selector: "textarea"
+            });
+        </script>
 
 		<base href="localhost<?php echo $this->baseUrl(); ?>/">
 	</head>

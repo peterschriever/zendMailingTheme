@@ -47,11 +47,11 @@ class IndexController extends Zend_Controller_Action
                 // TODO: functie schrijven om mails uiteindelijk te versturen
                 Zend_Debug::dump($formData);
                 $mail = new Zend_Mail();
-                $mail->setBodyText('My Nice Test Text');
-                $mail->setBodyHtml('My Nice <b>Test</b> Text');
-                $mail->setFrom('peterzen72@gmail.com', 'Some Sender');
-                $mail->addTo('peterzen72@gmail.com', 'Some Recipient');
-                $mail->setSubject('TestSubject');
+                //$mail->setBodyText();
+                $mail->setBodyHtml($formData["message"]); // get theme html
+                $mail->setFrom('zendtheme@gmail.com', $formData["name"]);
+                $mail->addTo('zendtheme@gmail.com'); // add recipient list here
+                $mail->setSubject($formData["subject"]);
                 $mail->send();
                 $form->populate($formData);
             } else {
