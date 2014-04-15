@@ -44,7 +44,8 @@ class Application_Form_Mail extends Zend_Form
             ->addValidator('NotEmpty');
 
         $submit = new Zend_Form_Element_Submit('submit');
-        $submit->setAttrib('id', 'sendMail');
+        $submit->setAttrib('id', 'sendMail')
+               ->setAttrib('class', 'button expand');
 
         $this->addElements(array($name, $subject, $theme, $content, $submit));
     }
