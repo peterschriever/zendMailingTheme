@@ -23,7 +23,7 @@ class Application_Form_List extends Zend_Form
             ->addValidator('NotEmpty');
 
         $submit = new Zend_Form_Element_Submit('submit');
-        $submit->setLabel('Add new subscriber')
+        $submit->setLabel('Subscriber toevoegen')
             ->setAttrib('id', 'list')
             ->setAttrib('class', 'button expand');
 

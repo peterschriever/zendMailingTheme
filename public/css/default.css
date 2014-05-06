@@ -1,10 +1,9 @@
 body {
-    background-color: #D6D6D6;
+    background-color: #E3E3E3;
 }
 
 .mail {
-    height: 40em;
-    padding-right: 1em;
+    min-height: 50em;
     background-color: #FFFFFF;
 }
 
@@ -13,11 +12,14 @@ body {
 }
 
 .list {
-    height: 40em;
-    padding-left: 1em;
+    min-height: 50em;
     background-color: #FFFFFF;
 }
 
 .list-content {
     padding: 1em;
+}
+
+.textarea {
+    height: 15em;
 }
