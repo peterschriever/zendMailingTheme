@@ -23,6 +23,10 @@ class IndexController extends Zend_Controller_Action
             }
         }
         
+        // Show the list with e-mailaddresses
+		$list = new Application_Model_DbTable_List();
+		$this->view->show_list = $list;
+        
         // To add a new subscriber to the list
         $list_form = new Application_Form_List();
         $this->view->list_form = $list_form;

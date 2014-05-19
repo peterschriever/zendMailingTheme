@@ -23,6 +23,15 @@
         <div class="list">
             <div class="list-content">
                 <?php
+                    $this->title = 'Lijst met e-mailadressen';
+                    $this->headTitle($this->title);
+                    echo '<h3>'.$this->title.'</h3>';
+                    echo $this->show_list;
+                ?>
+            
+                <hr>
+                
+                <?php
                     $this->title = 'Nieuwe subscriber toevoegen aan de e-maillijst';
                     $this->headTitle($this->title);
                     echo '<h3>'.$this->title.'</h3>';
