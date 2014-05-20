@@ -25,18 +25,18 @@ class IndexController extends Zend_Controller_Action
         
         // Show the list with e-mailaddresses
 		$list = new Application_Model_DbTable_List();
-		$this->view->show_list = $list;
+        $email_list = $list->getList();
+		$this->view->show_list = $email_list;
         
         // To add a new subscriber to the list
         $list_form = new Application_Form_List();
         $this->view->list_form = $list_form;
         if($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->getPost();
+            $form_data = $this->getRequest()->getPost();
             if($list_form->isValid($formData)) {
-                // TODO: functie schrijven om mails uiteindelijk te versturen
-                // mailing form is valid => send mail function parameters are in $form->getValue('paramname')
+                // Todo: nieuw e-mailadres moet worden toegevoegd aan de lijst
             } else {
-                $list_form->populate($formData);
+                $list_form->populate($form_data);
             }
         }
     }

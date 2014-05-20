@@ -7,7 +7,7 @@ $this->headTitle($this->title);
 	<tr>
 		<th>E-mailaddress</th><th>Authentication code</th><th>Status</th>
 	</tr>
-	<?php foreach($this->list as $data) : ?>
+	<?php foreach($this->email_list as $data) : ?>
 		<tr>
 			<td><?php echo $this->escape($data->email); ?></td>
 			<td><?php echo $this->escape($data->auth_code); ?></td>
