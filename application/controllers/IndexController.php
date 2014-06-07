@@ -10,7 +10,6 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
         $mail_form = new Application_Form_Mail();
         $this->view->mail_form = $mail_form;
         if($this->getRequest()->isPost()) {
@@ -23,7 +22,6 @@ class IndexController extends Zend_Controller_Action
             }
         }
         
-        // Show the list with e-mailaddresses
 		$email_list = new Application_Model_DbTable_List();
 		$this->view->index = $email_list->fetchAll();
         
@@ -32,7 +30,7 @@ class IndexController extends Zend_Controller_Action
         $this->view->list_form = $list_form;
         if($this->getRequest()->isPost()) {
             $form_data = $this->getRequest()->getPost();
-            if($list_form->isValid($formData)) {
+            if($list_form->isValid($form_data)) {
                 // Todo: nieuw e-mailadres moet worden toegevoegd aan de lijst
             } else {
                 $list_form->populate($form_data);
@@ -50,8 +48,10 @@ class IndexController extends Zend_Controller_Action
                 // TODO: functie schrijven om mails uiteindelijk te versturen
                 Zend_Debug::dump($formData);
                 $mail = new Zend_Mail();
-                //$mail->setBodyText();
-                $mail->setBodyHtml($formData["message"]); // get theme html
+                // $mail->setBodyText();
+                // get html
+                $html = $this->generateMailHtml($formData["message"], $formData["name"], $formData["slogan"], $formData["theme"]);
+                $mail->setBodyHtml($html);
                 $mail->setFrom('zendtheme@gmail.com', $formData["name"]);
                 $mail->addTo('zendtheme@gmail.com'); // add recipient list here
                 $mail->setSubject($formData["subject"]);
@@ -61,7 +61,21 @@ class IndexController extends Zend_Controller_Action
                 $form->populate($formData);
             }
         }
+    }
 
+    private function generateMailHtml($message, $name, $slogan, $idTheme) {
+        $themes = new Application_Model_DbTable_Themes();
+        $theme = $themes->fetchRow(array('id'=>$idTheme));
+        $strTheme = $theme["name"];
+        Zend_Debug::dump(scandir("./themes/$strTheme"));
+        $themeHtml = file_get_contents("./themes/".$strTheme."/index.php");
+        $themeHtml = str_replace('$currentDay$', date("d"), $themeHtml);
+        $themeHtml = str_replace('$currentMonth$', date("m"), $themeHtml);
+        $themeHtml = str_replace('$currentYear$', date("y"), $themeHtml);
+        $themeHtml = str_replace('$companyName$', $name, $themeHtml);
+        $themeHtml = str_replace('$companySlogan$', $slogan, $themeHtml);
+        $themeHtml = str_replace('$message$', $message, $themeHtml);
+        return $themeHtml;
     }
     
     public function showlistAction()

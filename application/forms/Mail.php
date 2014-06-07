@@ -7,14 +7,19 @@ class Application_Form_Mail extends Zend_Form
     {
         $this->setName("mail");
 
-        /*
         $name = new Zend_Form_Element_Text('name');
         $name->setLabel('Naam: ')
             ->setRequired(true)
             ->addFilter('StripTags')
             ->addFilter('StringTrim')
             ->addValidator('NotEmpty');
-        */
+
+        $slogan = new Zend_Form_Element_Text('slogan');
+        $slogan->setLabel('Slogan: ')
+            ->setRequired(true)
+            ->addFilter('StripTags')
+            ->addFilter('StringTrim')
+            ->addValidator('NotEmpty');
 
         $subject = new Zend_Form_Element_Text('subject');
         $subject->setLabel('Onderwerp: ')
@@ -23,7 +28,7 @@ class Application_Form_Mail extends Zend_Form
             ->addFilter('StringTrim')
             ->addValidator('NotEmpty');
 
-        $theme = new Application_Form_Element_ThemeSelect('themeSelect');
+        $theme = new Application_Form_Element_ThemeSelect('theme');
         $theme->setLabel('Thema: ')
             ->setRequired(true)
             ->addFilter('StripTags')
@@ -41,17 +46,15 @@ class Application_Form_Mail extends Zend_Form
             ->setRequired(true)
             ->setAttrib('cols','30')
             ->setAttrib('rows', '5')
-            ->setAttrib('class', 'textarea')
             ->addFilter('StripTags')
             ->addFilter('StringTrim')
             ->addValidator('NotEmpty');
 
         $submit = new Zend_Form_Element_Submit('submit');
-        $submit->setLabel('Mail verzenden')
-               ->setAttrib('id', 'sendMail')
-               ->setAttrib('class', 'button expand');
+        $submit->setAttrib('id', 'sendMail')
+            ->setAttrib('class', 'button expand');
 
-        $this->addElements(array(/* $name, */$subject, $theme, $content, $submit));
+        $this->addElements(array($name, $slogan, $subject, $theme, $content, $submit));
     }
 
 
