@@ -14,5 +14,11 @@ class Application_Model_DbTable_List extends Zend_Db_Table_Abstract
             
         return $email_list;
     }
+
+    public function getNextId() {
+        $c = $this->fetchAll()->count();
+        $c = $c+1;
+        return $c;
+    }
 }
 

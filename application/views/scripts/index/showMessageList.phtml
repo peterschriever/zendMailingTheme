@@ -1,0 +1,26 @@
+<?php
+$this->title = "Zend Mailing Theme";
+$this->headTitle($this->title);
+echo '<h3>'.$this->title.'</h3>';
+?>
+<table>
+    <tr>
+        <th>Naam</th><th>Slogan</th><th>Onderwerp</th><th>Thema id</th><th>Datum</th>
+    </tr>
+    <?php foreach($this->allmails as $data) : ?>
+
+
+        <tr>
+            <td><?php echo $this->escape($data["name"]); ?></a></td>
+            <td><?php echo $this->escape($data["slogan"]); ?></td>
+            <td>
+                <a href="/school/zendMailingTheme/public/index/loadwebversion?id=<?php echo $data["id"]; ?>">
+                    <?php echo $this->escape($data["subject"]); ?>
+                </a>
+            </td>
+            <td><?php echo $this->escape($data["theme_id"]); ?></td>
+            <td><?php echo $this->escape($data["date"]); ?></td>
+        </tr>
+
+    <?php endforeach; ?>
+</table>
